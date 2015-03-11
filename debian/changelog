@@ -1,3 +1,11 @@
+youtube-dl (2014.08.05-1+deb8u1) jessie; urgency=medium
+
+  * Non-maintainer upload.
+  * Use SSL protocol negotiation, rather than requiring SSLv3 (which is no
+    longer supported in python 2.7.9). Closes: #780059.
+
+ -- Stefano Rivera <stefanor@debian.org>  Tue, 10 Mar 2015 21:05:34 -0700
+
 youtube-dl (2014.08.05-1) unstable; urgency=medium
 
   * Imported Upstream version 2014.08.05.

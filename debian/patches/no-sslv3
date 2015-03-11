@@ -1,0 +1,34 @@
+Description: Support Python 2.7.9, which removed PROTOCOL_SSLv3
+ In fact, don't try to force an SSL version at all. Debian OpenSSL doesn't
+ support insecure versions.
+ Upstream use Python's default SSL handshake since
+ https://github.com/rg3/youtube-dl/commit/0db261ba567cb5370455d67c4398e11e5e2119f8
+ And switches to TLSv1 in legacy paths in
+ https://github.com/rg3/youtube-dl/commit/d79323136fabc2cd72afc7c124e17797e32df514
+Author: Stefano Rivera <stefanor@debian.org>
+Bug-Debian: https://bugs.debian.org/780059
+Forwarded: not-needed
+Last-Update: 2015-03-08
+
+--- a/youtube_dl/utils.py
++++ b/youtube_dl/utils.py
+@@ -588,17 +588,14 @@
+                 if getattr(self, '_tunnel_host', False):
+                     self.sock = sock
+                     self._tunnel()
+-                try:
+-                    self.sock = ssl.wrap_socket(sock, self.key_file, self.cert_file, ssl_version=ssl.PROTOCOL_SSLv3)
+-                except ssl.SSLError:
+-                    self.sock = ssl.wrap_socket(sock, self.key_file, self.cert_file, ssl_version=ssl.PROTOCOL_SSLv23)
++                self.sock = ssl.wrap_socket(sock, self.key_file, self.cert_file, ssl_version=ssl.PROTOCOL_SSLv23)
+ 
+         class HTTPSHandlerV3(compat_urllib_request.HTTPSHandler):
+             def https_open(self, req):
+                 return self.do_open(HTTPSConnectionV3, req)
+         return HTTPSHandlerV3(**kwargs)
+     else:
+-        context = ssl.SSLContext(ssl.PROTOCOL_SSLv3)
++        context = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
+         context.verify_mode = (ssl.CERT_NONE
+                                if opts_no_check_certificate
+                                else ssl.CERT_REQUIRED)

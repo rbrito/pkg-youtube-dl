@@ -2,6 +2,7 @@ Source: youtube-dl
 Section: web
 Priority: extra
 Maintainer: Rogério Brito <rbrito@ime.usp.br>
+Uploaders: Holger Levsen <holger@debian.org>
 Build-Depends:
  bash-completion,
  debhelper (>= 9),

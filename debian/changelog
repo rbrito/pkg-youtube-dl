@@ -1,3 +1,10 @@
+youtube-dl (2017.02.07-1~bpo8+1) jessie-backports; urgency=medium
+
+  * Rebuild for jessie-backports.
+  * Add myself to uploaders.
+
+ -- Holger Levsen <holger@debian.org>  Tue, 21 Mar 2017 21:30:45 +0100
+
 youtube-dl (2017.02.07-1) unstable; urgency=medium
 
   * New upstream version 2017.02.07

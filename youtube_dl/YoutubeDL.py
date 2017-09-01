@@ -26,6 +26,8 @@ import tokenize
 import traceback
 import random
 
+from string import ascii_letters
+
 from .compat import (
     compat_basestring,
     compat_cookiejar,
@@ -58,6 +60,7 @@ from .utils import (
     format_bytes,
     formatSeconds,
     GeoRestrictedError,
+    int_or_none,
     ISO3166Utils,
     locked_file,
     make_HTTPS_handler,
@@ -302,6 +305,17 @@ class YoutubeDL(object):
                         postprocessor.
     """
 
+    _NUMERIC_FIELDS = set((
+        'width', 'height', 'tbr', 'abr', 'asr', 'vbr', 'fps', 'filesize', 'filesize_approx',
+        'timestamp', 'upload_year', 'upload_month', 'upload_day',
+        'duration', 'view_count', 'like_count', 'dislike_count', 'repost_count',
+        'average_rating', 'comment_count', 'age_limit',
+        'start_time', 'end_time',
+        'chapter_number', 'season_number', 'episode_number',
+        'track_number', 'disc_number', 'release_year',
+        'playlist_index',
+    ))
+
     params = None
     _ies = []
     _pps = []
@@ -498,24 +512,25 @@ class YoutubeDL(object):
     def to_console_title(self, message):
         if not self.params.get('consoletitle', False):
             return
-        if compat_os_name == 'nt' and ctypes.windll.kernel32.GetConsoleWindow():
-            # c_wchar_p() might not be necessary if `message` is
-            # already of type unicode()
-            ctypes.windll.kernel32.SetConsoleTitleW(ctypes.c_wchar_p(message))
+        if compat_os_name == 'nt':
+            if ctypes.windll.kernel32.GetConsoleWindow():
+                # c_wchar_p() might not be necessary if `message` is
+                # already of type unicode()
+                ctypes.windll.kernel32.SetConsoleTitleW(ctypes.c_wchar_p(message))
         elif 'TERM' in os.environ:
             self._write_string('\033]0;%s\007' % message, self._screen_file)
 
     def save_console_title(self):
         if not self.params.get('consoletitle', False):
             return
-        if 'TERM' in os.environ:
+        if compat_os_name != 'nt' and 'TERM' in os.environ:
             # Save the title on stack
             self._write_string('\033[22;0t', self._screen_file)
 
     def restore_console_title(self):
         if not self.params.get('consoletitle', False):
             return
-        if 'TERM' in os.environ:
+        if compat_os_name != 'nt' and 'TERM' in os.environ:
             # Restore the title from stack
             self._write_string('\033[23;0t', self._screen_file)
 
@@ -638,22 +653,11 @@ class YoutubeDL(object):
                     r'%%(\1)0%dd' % field_size_compat_map[mobj.group('field')],
                     outtmpl)
 
-            NUMERIC_FIELDS = set((
-                'width', 'height', 'tbr', 'abr', 'asr', 'vbr', 'fps', 'filesize', 'filesize_approx',
-                'timestamp', 'upload_year', 'upload_month', 'upload_day',
-                'duration', 'view_count', 'like_count', 'dislike_count', 'repost_count',
-                'average_rating', 'comment_count', 'age_limit',
-                'start_time', 'end_time',
-                'chapter_number', 'season_number', 'episode_number',
-                'track_number', 'disc_number', 'release_year',
-                'playlist_index',
-            ))
-
             # Missing numeric fields used together with integer presentation types
             # in format specification will break the argument substitution since
             # string 'NA' is returned for missing fields. We will patch output
             # template for missing fields to meet string presentation type.
-            for numeric_field in NUMERIC_FIELDS:
+            for numeric_field in self._NUMERIC_FIELDS:
                 if numeric_field not in template_dict:
                     # As of [1] format syntax is:
                     #  %[mapping_key][conversion_flags][minimum_width][.precision][length_modifier]type
@@ -672,7 +676,19 @@ class YoutubeDL(object):
                         FORMAT_RE.format(numeric_field),
                         r'%({0})s'.format(numeric_field), outtmpl)
 
-            filename = expand_path(outtmpl % template_dict)
+            # expand_path translates '%%' into '%' and '$$' into '$'
+            # correspondingly that is not what we want since we need to keep
+            # '%%' intact for template dict substitution step. Working around
+            # with boundary-alike separator hack.
+            sep = ''.join([random.choice(ascii_letters) for _ in range(32)])
+            outtmpl = outtmpl.replace('%%', '%{0}%'.format(sep)).replace('$$', '${0}$'.format(sep))
+
+            # outtmpl should be expand_path'ed before template dict substitution
+            # because meta fields may contain env variables we don't want to
+            # be expanded. For example, for outtmpl "%(title)s.%(ext)s" and
+            # title "Hello $PATH", we don't want `$PATH` to be expanded.
+            filename = expand_path(outtmpl).replace(sep, '') % template_dict
+
             # Temporary fix for #4787
             # 'Treat' all problem characters by passing filename through preferredencoding
             # to workaround encoding issues with subprocess on python2 @ Windows
@@ -844,7 +860,7 @@ class YoutubeDL(object):
 
             force_properties = dict(
                 (k, v) for k, v in ie_result.items() if v is not None)
-            for f in ('_type', 'url', 'ie_key'):
+            for f in ('_type', 'url', 'id', 'extractor', 'extractor_key', 'ie_key'):
                 if f in force_properties:
                     del force_properties[f]
             new_result = info.copy()
@@ -1047,6 +1063,25 @@ class YoutubeDL(object):
                 return m.group('none_inclusive')
             return op(actual_value, comparison_value)
         return _filter
+
+    def _default_format_spec(self, info_dict, download=True):
+        req_format_list = []
+
+        def can_have_partial_formats():
+            if self.params.get('simulate', False):
+                return True
+            if not download:
+                return True
+            if self.params.get('outtmpl', DEFAULT_OUTTMPL) == '-':
+                return False
+            if info_dict.get('is_live'):
+                return False
+            merger = FFmpegMergerPP(self)
+            return merger.available and merger.can_merge()
+        if can_have_partial_formats():
+            req_format_list.append('bestvideo+bestaudio')
+        req_format_list.append('best')
+        return '/'.join(req_format_list)
 
     def build_format_selector(self, format_spec):
         def syntax_error(note, start):
@@ -1344,9 +1379,28 @@ class YoutubeDL(object):
         if 'title' not in info_dict:
             raise ExtractorError('Missing "title" field in extractor result')
 
-        if not isinstance(info_dict['id'], compat_str):
-            self.report_warning('"id" field is not a string - forcing string conversion')
-            info_dict['id'] = compat_str(info_dict['id'])
+        def report_force_conversion(field, field_not, conversion):
+            self.report_warning(
+                '"%s" field is not %s - forcing %s conversion, there is an error in extractor'
+                % (field, field_not, conversion))
+
+        def sanitize_string_field(info, string_field):
+            field = info.get(string_field)
+            if field is None or isinstance(field, compat_str):
+                return
+            report_force_conversion(string_field, 'a string', 'string')
+            info[string_field] = compat_str(field)
+
+        def sanitize_numeric_fields(info):
+            for numeric_field in self._NUMERIC_FIELDS:
+                field = info.get(numeric_field)
+                if field is None or isinstance(field, compat_numeric_types):
+                    continue
+                report_force_conversion(numeric_field, 'numeric', 'int')
+                info[numeric_field] = int_or_none(field)
+
+        sanitize_string_field(info_dict, 'id')
+        sanitize_numeric_fields(info_dict)
 
         if 'playlist' not in info_dict:
             # It isn't part of a playlist
@@ -1427,16 +1481,28 @@ class YoutubeDL(object):
         if not formats:
             raise ExtractorError('No video formats found!')
 
+        def is_wellformed(f):
+            url = f.get('url')
+            if not url:
+                self.report_warning(
+                    '"url" field is missing or empty - skipping format, '
+                    'there is an error in extractor')
+                return False
+            if isinstance(url, bytes):
+                sanitize_string_field(f, 'url')
+            return True
+
+        # Filter out malformed formats for better extraction robustness
+        formats = list(filter(is_wellformed, formats))
+
         formats_dict = {}
 
         # We check that all the formats have the format and format_id fields
         for i, format in enumerate(formats):
-            if 'url' not in format:
-                raise ExtractorError('Missing "url" key in result (index %d)' % i)
-
+            sanitize_string_field(format, 'format_id')
+            sanitize_numeric_fields(format)
             format['url'] = sanitize_url(format['url'])
-
-            if format.get('format_id') is None:
+            if not format.get('format_id'):
                 format['format_id'] = compat_str(i)
             else:
                 # Sanitize format_id from characters used in format selector expression
@@ -1489,14 +1555,10 @@ class YoutubeDL(object):
 
         req_format = self.params.get('format')
         if req_format is None:
-            req_format_list = []
-            if (self.params.get('outtmpl', DEFAULT_OUTTMPL) != '-' and
-                    not info_dict.get('is_live')):
-                merger = FFmpegMergerPP(self)
-                if merger.available and merger.can_merge():
-                    req_format_list.append('bestvideo+bestaudio')
-            req_format_list.append('best')
-            req_format = '/'.join(req_format_list)
+            req_format = self._default_format_spec(info_dict, download=download)
+            if self.params.get('verbose'):
+                self.to_stdout('[debug] Default format spec: %s' % req_format)
+
         format_selector = self.build_format_selector(req_format)
 
         # While in format selection we may need to have an access to the original
@@ -1859,7 +1921,7 @@ class YoutubeDL(object):
                         info_dict.get('protocol') == 'm3u8' and
                         self.params.get('hls_prefer_native')):
                     if fixup_policy == 'warn':
-                        self.report_warning('%s: malformated aac bitstream.' % (
+                        self.report_warning('%s: malformed AAC bitstream detected.' % (
                             info_dict['id']))
                     elif fixup_policy == 'detect_or_warn':
                         fixup_pp = FFmpegFixupM3u8PP(self)
@@ -1868,7 +1930,7 @@ class YoutubeDL(object):
                             info_dict['__postprocessors'].append(fixup_pp)
                         else:
                             self.report_warning(
-                                '%s: malformated aac bitstream. %s'
+                                '%s: malformed AAC bitstream detected. %s'
                                 % (info_dict['id'], INSTALL_FFMPEG_MESSAGE))
                     else:
                         assert fixup_policy in ('ignore', 'never')

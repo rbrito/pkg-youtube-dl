@@ -1,3 +1,9 @@
+youtube-dl (2018.06.18-1~bpo9+1) stretch-backports; urgency=medium
+
+  * Rebuild for stretch-backports.
+
+ -- Andreas Tille <tille@debian.org>  Mon, 13 Aug 2018 08:12:14 +0200
+
 youtube-dl (2018.06.18-1) unstable; urgency=medium
 
   * New upstream version 2018.06.18 (Closes: #900642)

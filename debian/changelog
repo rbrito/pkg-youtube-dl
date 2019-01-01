@@ -1,3 +1,30 @@
+youtube-dl (2018.11.07-1) unstable; urgency=medium
+
+  * New upstream version 2018.11.07.
+    + Highlight: Fix problem extracting videos from YouTube.
+
+ -- Rogério Brito <rbrito@ime.usp.br>  Sun, 11 Nov 2018 00:06:15 -0200
+
+youtube-dl (2018.09.10-1) unstable; urgency=medium
+
+  * ACK NMU by Clint Adams. Thanks!
+  * New upstream version 2018.09.10. Closes: #908461, #907722, #904619.
+  * debian/patch:
+    + Refresh all patches to avoid FTBFS.
+  * debian/control:
+    + Set 'Rules-Requires-Root: no'.
+    + Mark compliance with Debian policy 4.2.1. No further changes needed.
+    + Update list of extractors in long description.
+
+ -- Rogério Brito <rbrito@ime.usp.br>  Fri, 14 Sep 2018 23:11:59 -0300
+
+youtube-dl (2018.06.18-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Add missing python3-setuptools build dependency.  closes: #902279.
+
+ -- Clint Adams <clint@debian.org>  Sun, 24 Jun 2018 16:54:30 -0400
+
 youtube-dl (2018.06.18-1~bpo9+1) stretch-backports; urgency=medium
 
   * Rebuild for stretch-backports.

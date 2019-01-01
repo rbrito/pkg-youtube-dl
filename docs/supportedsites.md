@@ -56,6 +56,7 @@
  - **archive.org**: archive.org videos
  - **ARD**
  - **ARD:mediathek**
+ - **ARDBetaMediathek**
  - **Arkena**
  - **arte.tv**
  - **arte.tv:+7**
@@ -83,8 +84,6 @@
  - **awaan:season**
  - **awaan:video**
  - **AZMedien**: AZ Medien videos
- - **AZMedienPlaylist**: AZ Medien playlists
- - **AZMedienShowPlaylist**: AZ Medien show playlists
  - **BaiduVideo**: 百度视频
  - **bambuser**
  - **bambuser:channel**
@@ -97,6 +96,7 @@
  - **bbc.co.uk:article**: BBC articles
  - **bbc.co.uk:iplayer:playlist**
  - **bbc.co.uk:playlist**
+ - **BBVTV**
  - **Beatport**
  - **Beeg**
  - **BehindKink**
@@ -108,6 +108,8 @@
  - **BiliBili**
  - **BioBioChileTV**
  - **BIQLE**
+ - **BitChute**
+ - **BitChuteChannel**
  - **BleacherReport**
  - **BleacherReportCMS**
  - **blinkx**
@@ -174,6 +176,7 @@
  - **Clyp**
  - **cmt.com**
  - **CNBC**
+ - **CNBCVideo**
  - **CNN**
  - **CNNArticle**
  - **CNNBlogs**
@@ -189,7 +192,7 @@
  - **Crackle**
  - **Criterion**
  - **CrooksAndLiars**
- - **Crunchyroll**
+ - **crunchyroll**
  - **crunchyroll:playlist**
  - **CSNNE**
  - **CSpan**: C-SPAN
@@ -247,7 +250,9 @@
  - **EchoMsk**
  - **egghead:course**: egghead.io course
  - **egghead:lesson**: egghead.io lesson
+ - **ehftv**
  - **eHow**
+ - **EinsUndEinsTV**
  - **Einthusan**
  - **eitb.tv**
  - **EllenTube**
@@ -265,6 +270,7 @@
  - **EsriVideo**
  - **Europa**
  - **EveryonesMixtape**
+ - **EWETV**
  - **ExpoTV**
  - **Expressen**
  - **ExtremeTube**
@@ -290,7 +296,6 @@
  - **Foxgay**
  - **foxnews**: Fox News and Fox Business Video
  - **foxnews:article**
- - **foxnews:insider**
  - **FoxSports**
  - **france2.fr:generation-what**
  - **FranceCulture**
@@ -303,6 +308,9 @@
  - **Freesound**
  - **freespeech.org**
  - **FreshLive**
+ - **FrontendMasters**
+ - **FrontendMastersCourse**
+ - **FrontendMastersLesson**
  - **Funimation**
  - **FunkChannel**
  - **FunkMix**
@@ -322,6 +330,7 @@
  - **Gfycat**
  - **GiantBomb**
  - **Giga**
+ - **GlattvisionTV**
  - **Glide**: Glide mobile video messages (glide.me)
  - **Globo**
  - **GloboArticle**
@@ -351,7 +360,7 @@
  - **HitRecord**
  - **HornBunny**
  - **HotNewHipHop**
- - **HotStar**
+ - **hotstar**
  - **hotstar:playlist**
  - **Howcast**
  - **HowStuffWorks**
@@ -403,6 +412,7 @@
  - **Ketnet**
  - **KhanAcademy**
  - **KickStarter**
+ - **KinoPoisk**
  - **KonserthusetPlay**
  - **kontrtube**: KontrTube.ru - Труба зовёт
  - **KrasView**: Красвью
@@ -435,6 +445,8 @@
  - **limelight:channel**
  - **limelight:channel_list**
  - **LineTV**
+ - **linkedin:learning**
+ - **linkedin:learning:course**
  - **LiTV**
  - **LiveLeak**
  - **LiveLeakEmbed**
@@ -488,6 +500,7 @@
  - **Mixer:vod**
  - **MLB**
  - **Mnet**
+ - **MNetTV**
  - **MoeVideo**: LetitBit video services: moevideo.net, playreplay.net and videochart.net
  - **Mofosex**
  - **Mojvideo**
@@ -519,6 +532,7 @@
  - **Myvi**
  - **MyVidster**
  - **MyviEmbed**
+ - **MyVisionTV**
  - **n-tv.de**
  - **natgeo**
  - **natgeo:episodeguide**
@@ -544,6 +558,7 @@
  - **netease:program**: 网易云音乐 - 电台节目
  - **netease:singer**: 网易云音乐 - 歌手
  - **netease:song**: 网易云音乐
+ - **NetPlus**
  - **Netzkino**
  - **Newgrounds**
  - **NewgroundsPlaylist**
@@ -575,6 +590,7 @@
  - **Normalboots**
  - **NosVideo**
  - **Nova**: TN.cz, Prásk.tv, Nova.cz, Novaplus.cz, FANDA.tv, Krásná.cz and Doma.cz
+ - **NovaEmbed**
  - **nowness**
  - **nowness:playlist**
  - **nowness:series**
@@ -590,7 +606,9 @@
  - **NRKSkole**: NRK Skole
  - **NRKTV**: NRK TV and NRK Radio
  - **NRKTVDirekte**: NRK TV Direkte and NRK Radio Direkte
+ - **NRKTVEpisode**
  - **NRKTVEpisodes**
+ - **NRKTVSeason**
  - **NRKTVSeries**
  - **ntv.ru**
  - **Nuvid**
@@ -617,6 +635,7 @@
  - **orf:iptv**: iptv.ORF.at
  - **orf:oe1**: Radio Österreich 1
  - **orf:tvthek**: ORF TVthek
+ - **OsnatelTV**
  - **PacktPub**
  - **PacktPubCourse**
  - **PandaTV**: 熊猫TV
@@ -668,6 +687,8 @@
  - **PrimeShareTV**
  - **PromptFile**
  - **prosiebensat1**: ProSiebenSat.1 Digital
+ - **puhutv**
+ - **puhutv:serie**
  - **Puls4**
  - **Pyvideo**
  - **qqmusic**: QQ音乐
@@ -675,6 +696,7 @@
  - **qqmusic:playlist**: QQ音乐 - 歌单
  - **qqmusic:singer**: QQ音乐 - 歌手
  - **qqmusic:toplist**: QQ音乐 - 排行榜
+ - **QuantumTV**
  - **Quickline**
  - **QuicklineLive**
  - **R7**
@@ -690,6 +712,7 @@
  - **RaiPlayLive**
  - **RaiPlayPlaylist**
  - **RayWenderlich**
+ - **RayWenderlichCourse**
  - **RBMARadio**
  - **RDS**: RDS.ca
  - **RedBullTV**
@@ -741,6 +764,7 @@
  - **safari**: safaribooksonline.com online video
  - **safari:api**
  - **safari:course**: safaribooksonline.com online courses
+ - **SAKTV**
  - **Sapo**: SAPO Vídeos
  - **savefrom.net**
  - **SBS**: sbs.com.au
@@ -796,7 +820,7 @@
  - **Spiegeltv**
  - **sport.francetvinfo.fr**
  - **Sport5**
- - **SportBoxEmbed**
+ - **SportBox**
  - **SportDeutschland**
  - **SpringboardPlatform**
  - **Sprout**
@@ -814,6 +838,7 @@
  - **StretchInternet**
  - **SunPorno**
  - **SVT**
+ - **SVTPage**
  - **SVTPlay**: SVT Play and Öppet arkiv
  - **SVTSeries**
  - **SWRMediathek**
@@ -834,6 +859,7 @@
  - **techtv.mit.edu**
  - **ted**
  - **Tele13**
+ - **Tele5**
  - **TeleBruxelles**
  - **Telecinco**: telecinco.es, cuatro.com and mediaset.es
  - **Telegraaf**
@@ -885,7 +911,6 @@
  - **TV2**
  - **tv2.hu**
  - **TV2Article**
- - **TV3**
  - **TV4**: tv4.se and tv4play.se
  - **TV5MondePlus**: TV5MONDE+
  - **TVA**
@@ -905,7 +930,9 @@
  - **tvp:embed**: Telewizja Polska
  - **tvp:series**
  - **TVPlayer**
+ - **TVPlayHome**
  - **Tweakers**
+ - **TwitCasting**
  - **twitch:chapter**
  - **twitch:clips**
  - **twitch:profile**
@@ -994,6 +1021,7 @@
  - **Vimple**: Vimple - one-click video hosting
  - **Vine**
  - **vine:user**
+ - **Viqeo**
  - **Viu**
  - **viu:ott**
  - **viu:playlist**
@@ -1019,12 +1047,14 @@
  - **vrv**
  - **vrv:series**
  - **VShare**
+ - **VTXTV**
  - **vube**: Vube.com
  - **VuClip**
  - **VVVVID**
  - **VyboryMos**
  - **Vzaar**
  - **Walla**
+ - **WalyTV**
  - **washingtonpost**
  - **washingtonpost:article**
  - **wat.tv**
@@ -1085,6 +1115,7 @@
  - **YouNowLive**
  - **YouNowMoment**
  - **YouPorn**
+ - **YourPorn**
  - **YourUpload**
  - **youtube**: YouTube.com
  - **youtube:channel**: YouTube.com channels

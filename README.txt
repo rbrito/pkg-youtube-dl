@@ -20,7 +20,7 @@ youtube-dl - download videos from youtube.com or other video platforms
 INSTALLATION
 
 
-To install it right away for all UNIX users (Linux, OS X, etc.), type:
+To install it right away for all UNIX users (Linux, macOS, etc.), type:
 
     sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
     sudo chmod a+rx /usr/local/bin/youtube-dl
@@ -41,7 +41,7 @@ You can also use pip:
 This command will update youtube-dl if you have already installed it.
 See the pypi page for more information.
 
-OS X users can install youtube-dl with Homebrew:
+macOS users can install youtube-dl with Homebrew:
 
     brew install youtube-dl
 
@@ -474,9 +474,9 @@ Post-processing Options:
                                      default; fix file if we can, warn
                                      otherwise)
     --prefer-avconv                  Prefer avconv over ffmpeg for running the
-                                     postprocessors (default)
-    --prefer-ffmpeg                  Prefer ffmpeg over avconv for running the
                                      postprocessors
+    --prefer-ffmpeg                  Prefer ffmpeg over avconv for running the
+                                     postprocessors (default)
     --ffmpeg-location PATH           Location of the ffmpeg/avconv binary;
                                      either the path to the binary or its
                                      containing directory.
@@ -493,7 +493,7 @@ CONFIGURATION
 
 
 You can configure youtube-dl by placing any supported command line
-option to a configuration file. On Linux and OS X, the system wide
+option to a configuration file. On Linux and macOS, the system wide
 configuration file is located at /etc/youtube-dl.conf and the user wide
 configuration file at ~/.config/youtube-dl/config. On Windows, the user
 wide configuration file locations are %APPDATA%\youtube-dl\config.txt or
@@ -594,6 +594,8 @@ with sequence type are:
     available
 -   upload_date (string): Video upload date (YYYYMMDD)
 -   uploader_id (string): Nickname or id of the video uploader
+-   channel (string): Full name of the channel the video is uploaded on
+-   channel_id (string): Id of the channel
 -   location (string): Physical location where the video was filmed
 -   duration (numeric): Length of the video in seconds
 -   view_count (numeric): How many users have watched the video on the
@@ -1147,7 +1149,7 @@ Use the --cookies option, for example
 
 In order to extract cookies from browser use any conforming browser
 extension for exporting cookies. For example, cookies.txt (for Chrome)
-or Export Cookies (for Firefox).
+or cookies.txt (for Firefox).
 
 Note that the cookies file must be in Mozilla/Netscape format and the
 first line of the cookies file must be either # HTTP Cookie File or
@@ -1589,9 +1591,28 @@ The code definitely should not look like:
 
 Use safe conversion functions
 
-Wrap all extracted numeric data into safe functions from utils:
-int_or_none, float_or_none. Use them for string to number conversions as
-well.
+Wrap all extracted numeric data into safe functions from
+youtube_dl/utils.py: int_or_none, float_or_none. Use them for string to
+number conversions as well.
+
+Use url_or_none for safe URL processing.
+
+Use try_get for safe metadata extraction from parsed JSON.
+
+Explore youtube_dl/utils.py for more useful convenience functions.
+
+More examples
+
+Safely extract optional description from parsed JSON
+
+    description = try_get(response, lambda x: x['result']['video'][0]['summary'], compat_str)
+
+Safely extract more optional metadata
+
+    video = try_get(response, lambda x: x['result']['video'][0], dict) or {}
+    description = video.get('summary')
+    duration = float_or_none(video.get('durationMs'), scale=1000)
+    view_count = int_or_none(video.get('views'))
 
 
 

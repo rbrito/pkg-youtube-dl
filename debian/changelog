@@ -1,3 +1,10 @@
+youtube-dl (2019.01.17-1~bpo9+1) stretch-backports; urgency=medium
+
+  * Rebuild for stretch-backports.
+  * Add myself to uploaders.
+
+ -- Holger Levsen <holger@debian.org>  Sun, 27 Jan 2019 15:23:56 +0100
+
 youtube-dl (2019.01.17-1) unstable; urgency=medium
 
   * New upstream version 2019.01.17.

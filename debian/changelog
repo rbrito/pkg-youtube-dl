@@ -1,3 +1,9 @@
+youtube-dl (2020.09.14-1~bpo10+1) buster-backports; urgency=medium
+
+  * Rebuild for buster-backports.
+
+ -- Roger Shimizu <rosh@debian.org>  Sun, 20 Sep 2020 23:08:26 +0900
+
 youtube-dl (2020.09.14-1) unstable; urgency=medium
 
   * New upstream version 2020.09.14.

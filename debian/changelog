@@ -1,3 +1,18 @@
+youtube-dl (2020.09.14-1) unstable; urgency=medium
+
+  * New upstream version 2020.09.14.
+    + Fixes problems with YouTube and downloads from Google Drive.
+
+ -- Rogério Brito <rbrito@ime.usp.br>  Sun, 13 Sep 2020 21:30:13 -0300
+
+youtube-dl (2020.07.28-1) unstable; urgency=medium
+
+  * New upstream version 2020.07.28
+    + Fixes problems with some playlists from YouTube (among other things).
+  * debian/control: Update list of supported sites.
+
+ -- Rogério Brito <rbrito@ime.usp.br>  Mon, 10 Aug 2020 13:56:03 -0300
+
 youtube-dl (2020.06.16.1-1~bpo10+1) buster-backports; urgency=medium
 
   * Rebuild for buster-backports.

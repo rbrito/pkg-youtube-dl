@@ -303,7 +303,7 @@ class YoutubeEntryListBaseInfoExtractor(YoutubeBaseInfoExtractor):
                     # Downloading page may result in intermittent 5xx HTTP error
                     # that is usually worked around with a retry
                     more = self._download_json(
-                        'https://youtube.com/%s' % mobj.group('more'), playlist_id,
+                        'https://www.youtube.com/%s' % mobj.group('more'), playlist_id,
                         'Downloading page #%s%s'
                         % (page_num, ' (retry #%d)' % count if count else ''),
                         transform_source=uppercase_escape,
@@ -1264,7 +1264,23 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
             'params': {
                 'skip_download': True,
             },
-        }
+        },
+        {
+            # empty description results in an empty string
+            'url': 'https://www.youtube.com/watch?v=x41yOUIvK2k',
+            'info_dict': {
+                'id': 'x41yOUIvK2k',
+                'ext': 'mp4',
+                'title': 'IMG 3456',
+                'description': '',
+                'upload_date': '20170613',
+                'uploader_id': 'ElevageOrVert',
+                'uploader': 'ElevageOrVert',
+            },
+            'params': {
+                'skip_download': True,
+            },
+        },
     ]
 
     def __init__(self, *args, **kwargs):
@@ -1384,7 +1400,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
         funcname = self._search_regex(
             (r'\b[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\(',
              r'\b[a-zA-Z0-9]+\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\(',
-             r'\b(?P<sig>[a-zA-Z0-9$]{2})\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)',
+             r'(?:\b|[^a-zA-Z0-9$])(?P<sig>[a-zA-Z0-9$]{2})\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)',
              r'(?P<sig>[a-zA-Z0-9$]+)\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)',
              # Obsolete patterns
              r'(["\'])signature\1\s*,\s*(?P<sig>[a-zA-Z0-9$]+)\(',
@@ -1825,7 +1841,8 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
         # Get video info
         video_info = {}
         embed_webpage = None
-        if re.search(r'player-age-gate-content">', video_webpage) is not None:
+        if (self._og_search_property('restrictions:age', video_webpage, default=None) == '18+'
+                or re.search(r'player-age-gate-content">', video_webpage) is not None):
             age_gate = True
             # We simulate the access to the video from www.youtube.com/v/{video_id}
             # this can be viewed without login into Youtube
@@ -1930,7 +1947,9 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
             ''', replace_url, video_description)
             video_description = clean_html(video_description)
         else:
-            video_description = self._html_search_meta('description', video_webpage) or video_details.get('shortDescription')
+            video_description = video_details.get('shortDescription')
+            if video_description is None:
+                video_description = self._html_search_meta('description', video_webpage)
 
         if not smuggled_data.get('force_singlefeed', False):
             if not self._downloader.params.get('noplaylist'):
@@ -2776,7 +2795,7 @@ class YoutubePlaylistIE(YoutubePlaylistBaseInfoExtractor):
         ids = []
         last_id = playlist_id[-11:]
         for n in itertools.count(1):
-            url = 'https://youtube.com/watch?v=%s&list=%s' % (last_id, playlist_id)
+            url = 'https://www.youtube.com/watch?v=%s&list=%s' % (last_id, playlist_id)
             webpage = self._download_webpage(
                 url, playlist_id, 'Downloading page {0} of Youtube mix'.format(n))
             new_ids = orderedSet(re.findall(
@@ -3008,7 +3027,7 @@ class YoutubeChannelIE(YoutubePlaylistBaseInfoExtractor):
 
 class YoutubeUserIE(YoutubeChannelIE):
     IE_DESC = 'YouTube.com user videos (URL or "ytuser" keyword)'
-    _VALID_URL = r'(?:(?:https?://(?:\w+\.)?youtube\.com/(?:(?P<user>user|c)/)?(?!(?:attribution_link|watch|results|shared)(?:$|[^a-z_A-Z0-9-])))|ytuser:)(?!feed/)(?P<id>[A-Za-z0-9_-]+)'
+    _VALID_URL = r'(?:(?:https?://(?:\w+\.)?youtube\.com/(?:(?P<user>user|c)/)?(?!(?:attribution_link|watch|results|shared)(?:$|[^a-z_A-Z0-9%-])))|ytuser:)(?!feed/)(?P<id>[A-Za-z0-9_%-]+)'
     _TEMPLATE_URL = 'https://www.youtube.com/%s/%s/videos'
     IE_NAME = 'youtube:user'
 
@@ -3037,6 +3056,9 @@ class YoutubeUserIE(YoutubeChannelIE):
         'only_matching': True,
     }, {
         'url': 'https://www.youtube.com/c/gametrailers',
+        'only_matching': True,
+    }, {
+        'url': 'https://www.youtube.com/c/Pawe%C5%82Zadro%C5%BCniak',
         'only_matching': True,
     }, {
         'url': 'https://www.youtube.com/gametrailers',
@@ -3116,7 +3138,7 @@ class YoutubeLiveIE(YoutubeBaseInfoExtractor):
 
 class YoutubePlaylistsIE(YoutubePlaylistsBaseInfoExtractor):
     IE_DESC = 'YouTube.com user/channel playlists'
-    _VALID_URL = r'https?://(?:\w+\.)?youtube\.com/(?:user|channel)/(?P<id>[^/]+)/playlists'
+    _VALID_URL = r'https?://(?:\w+\.)?youtube\.com/(?:user|channel|c)/(?P<id>[^/]+)/playlists'
     IE_NAME = 'youtube:playlists'
 
     _TESTS = [{
@@ -3142,6 +3164,9 @@ class YoutubePlaylistsIE(YoutubePlaylistsBaseInfoExtractor):
             'title': 'Chem Player',
         },
         'skip': 'Blocked',
+    }, {
+        'url': 'https://www.youtube.com/c/ChristophLaimer/playlists',
+        'only_matching': True,
     }]
 
 
@@ -3286,7 +3311,7 @@ class YoutubeFeedsInfoExtractor(YoutubeBaseInfoExtractor):
                 break
 
             more = self._download_json(
-                'https://youtube.com/%s' % mobj.group('more'), self._PLAYLIST_TITLE,
+                'https://www.youtube.com/%s' % mobj.group('more'), self._PLAYLIST_TITLE,
                 'Downloading page #%s' % page_num,
                 transform_source=uppercase_escape,
                 headers=self._YOUTUBE_CLIENT_HEADERS)

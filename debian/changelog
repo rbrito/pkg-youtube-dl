@@ -1,6 +1,4 @@
-youtube-dl (2020.09.20-1~1.gbp1ca177) UNRELEASED; urgency=medium
-
-  ** SNAPSHOT build @1ca1779403171aaa303574682e5adc305017ded5 **
+youtube-dl (2020.09.20-1) unstable; urgency=medium
 
   * New upstream version 2020.09.20.
     + More carefully imported than general, since the upstream repository
@@ -10,7 +8,7 @@ youtube-dl (2020.09.20-1~1.gbp1ca177) UNRELEASED; urgency=medium
       fellow Debian users (I'm also a user after all!).
     + Fixes a few problems with sites in general.
 
- -- Rogério Brito <rbrito@ime.usp.br>  Sun, 25 Oct 2020 12:45:34 -0300
+ -- Rogério Brito <rbrito@ime.usp.br>  Sun, 25 Oct 2020 12:54:08 -0300
 
 youtube-dl (2020.09.14-1) unstable; urgency=medium
 

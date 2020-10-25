@@ -1,3 +1,17 @@
+youtube-dl (2020.09.20-1~1.gbp1ca177) UNRELEASED; urgency=medium
+
+  ** SNAPSHOT build @1ca1779403171aaa303574682e5adc305017ded5 **
+
+  * New upstream version 2020.09.20.
+    + More carefully imported than general, since the upstream repository
+      (and my fork of it, BTW) were taken down. The signature of the
+      original tarball failed to verify said tarball and this required more
+      attention/auditing than usual to import the changes to protect our
+      fellow Debian users (I'm also a user after all!).
+    + Fixes a few problems with sites in general.
+
+ -- Rogério Brito <rbrito@ime.usp.br>  Sun, 25 Oct 2020 12:45:34 -0300
+
 youtube-dl (2020.09.14-1) unstable; urgency=medium
 
   * New upstream version 2020.09.14.

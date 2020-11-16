@@ -1,3 +1,11 @@
+youtube-dl (2020.11.12-1~1.gbpa7395e) UNRELEASED; urgency=medium
+
+  ** SNAPSHOT build @a7395e37af8c86dba45dccbbd5fb8f7ce77ea648 **
+
+  * New upstream version 2020.11.12
+
+ -- Rogério Brito <rbrito@ime.usp.br>  Mon, 16 Nov 2020 15:30:13 -0300
+
 youtube-dl (2020.09.20-1) unstable; urgency=medium
 
   * New upstream version 2020.09.20.

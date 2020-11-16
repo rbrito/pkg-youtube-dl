@@ -1,13 +1,11 @@
-youtube-dl (2020.11.12-1~2.gbp957d02) UNRELEASED; urgency=medium
-
-  ** SNAPSHOT build @957d0281c007f247753a0f3ce7e493d330d8807f **
+youtube-dl (2020.11.12-1) unstable; urgency=medium
 
   * New upstream version 2020.11.12. Closes: #973575.
     + Fixes problems with YouTube (and a few other sites).
       Closes: #972727, #973842.
   * debian/control: Update list of extractors.
 
- -- Rogério Brito <rbrito@ime.usp.br>  Mon, 16 Nov 2020 17:00:09 -0300
+ -- Rogério Brito <rbrito@ime.usp.br>  Mon, 16 Nov 2020 17:03:36 -0300
 
 youtube-dl (2020.09.20-1) unstable; urgency=medium
 

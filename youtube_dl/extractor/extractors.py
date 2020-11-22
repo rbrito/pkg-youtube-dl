@@ -36,6 +36,7 @@ from .afreecatv import AfreecaTVIE
 from .airmozilla import AirMozillaIE
 from .aljazeera import AlJazeeraIE
 from .alphaporno import AlphaPornoIE
+from .amara import AmaraIE
 from .amcnetworks import AMCNetworksIE
 from .americastestkitchen import AmericasTestKitchenIE
 from .animeondemand import AnimeOnDemandIE
@@ -58,7 +59,7 @@ from .ard import (
     ARDMediathekIE,
 )
 from .arte import (
-    ArteTVPlus7IE,
+    ArteTVIE,
     ArteTVEmbedIE,
     ArteTVPlaylistIE,
 )
@@ -529,6 +530,7 @@ from .laola1tv import (
     EHFTVIE,
     ITTFIE,
 )
+from .lbry import LBRYIE
 from .lci import LCIIE
 from .lcp import (
     LcpPlayIE,
@@ -1053,8 +1055,7 @@ from .spankbang import (
     SpankBangPlaylistIE,
 )
 from .spankwire import SpankwireIE
-from .spiegel import SpiegelIE, SpiegelArticleIE
-from .spiegeltv import SpiegeltvIE
+from .spiegel import SpiegelIE
 from .spike import (
     BellatorIE,
     ParamountNetworkIE,
@@ -1357,7 +1358,6 @@ from .vk import (
 from .vlive import (
     VLiveIE,
     VLiveChannelIE,
-    VLivePlaylistIE
 )
 from .vodlocker import VodlockerIE
 from .vodpl import VODPlIE
@@ -1475,7 +1475,6 @@ from .yourupload import YourUploadIE
 from .youtube import (
     YoutubeIE,
     YoutubeHistoryIE,
-    YoutubeLiveIE,
     YoutubeTabIE,
     YoutubePlaylistIE,
     YoutubeRecommendedIE,

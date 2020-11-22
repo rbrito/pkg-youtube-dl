@@ -30,7 +30,7 @@ Depends:
 Recommends:
  aria2 | wget | curl,
  ca-certificates,
- ffmpeg | libav-tools,
+ ffmpeg,
  mpv | mplayer,
  python3-pyxattr,
  rtmpdump

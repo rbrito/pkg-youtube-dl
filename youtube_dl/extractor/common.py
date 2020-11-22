@@ -1456,9 +1456,10 @@ class InfoExtractor(object):
         try:
             self._request_webpage(url, video_id, 'Checking %s URL' % item, headers=headers)
             return True
-        except ExtractorError:
+        except ExtractorError as e:
             self.to_screen(
-                '%s: %s URL is invalid, skipping' % (video_id, item))
+                '%s: %s URL is invalid, skipping: %s'
+                % (video_id, item, error_to_compat_str(e.cause)))
             return False
 
     def http_scheme(self):
@@ -1663,7 +1664,7 @@ class InfoExtractor(object):
         # just the media without qualities renditions.
         # Fortunately, master playlist can be easily distinguished from media
         # playlist based on particular tags availability. As of [1, 4.3.3, 4.3.4]
-        # master playlist tags MUST NOT appear in a media playist and vice versa.
+        # master playlist tags MUST NOT appear in a media playlist and vice versa.
         # As of [1, 4.3.3.1] #EXT-X-TARGETDURATION tag is REQUIRED for every
         # media playlist and MUST NOT appear in master playlist thus we can
         # clearly detect media playlist with this criterion.

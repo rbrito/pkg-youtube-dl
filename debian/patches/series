@@ -2,3 +2,4 @@
 0002-Disable-upstream-s-autoupdate-mechanism.patch
 0003-Disable-remaining-tests-that-require-internet.patch
 0004-Skip-directories-and-style-checks-for-flake8.patch
+0005-Makefile-Don-t-run-flake8-when-running-offlinetest.patch

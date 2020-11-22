@@ -2,7 +2,11 @@ youtube-dl (2020.11.21.1-1~1.gbpdd15b1) UNRELEASED; urgency=medium
 
   ** SNAPSHOT build @dd15b1d2dc41f1624a3293e1bd54888a12e8388f **
 
-  * New upstream version 2020.11.21.1
+  * New upstream version 2020.11.21.1.
+    + Fixes many infrastructural problems in the core of the module, fixes
+      extraction of names from youtube playlists and fixes support for other
+      sites. Also, Closes: #972284 (probably the previous version already
+      had fixes for this).
 
  -- Rogério Brito <rbrito@ime.usp.br>  Sun, 22 Nov 2020 19:20:27 -0300
 

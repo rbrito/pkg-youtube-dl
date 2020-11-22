@@ -1,10 +1,15 @@
+From: =?utf-8?q?Rog=C3=A9rio_Theodoro_de_Brito?= <rbrito@ime.usp.br>
+Date: Sun, 22 Nov 2020 20:05:27 -0300
 Subject: Skip directories and style checks for flake8
-From: Rogério Theodoro de Brito <rbrito@ime.usp.br>
+
 Forwarded: no
 Last-Update: 2020-04-10
+---
+ Makefile | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/Makefile b/Makefile
-index 3e17365..aacc281 100644
+index 7fcfcef..aacc281 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -30,7 +30,10 @@ install: youtube-dl youtube-dl.1 youtube-dl.bash-completion youtube-dl.zsh youtu

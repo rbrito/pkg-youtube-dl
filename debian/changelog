@@ -1,18 +1,17 @@
-youtube-dl (2020.11.21.1-1~3.gbpdade68) UNRELEASED; urgency=medium
-
-  ** SNAPSHOT build @dade68be1119fa7ff2b91297fb58551f630c5388 **
+youtube-dl (2020.11.21.1-1) unstable; urgency=medium
 
   * New upstream version 2020.11.21.1.
     + Fixes many infrastructural problems in the core of the module, fixes
       extraction of names from youtube playlists and fixes support for other
       sites. Also, Closes: #972284 (probably the previous version already
       had fixes for this).
-  * debian/control: Remove libav-tools alternative of ffmpeg. (Closes: #768793)
+  * debian/control: Remove libav-tools alternative of ffmpeg.
+    (Closes: #768793)
   * debian/patches:
      + Regenerate from patch-queue.
      + Add patch to disable code-style checks when running tests.
 
- -- Rogério Brito <rbrito@ime.usp.br>  Sun, 22 Nov 2020 20:20:01 -0300
+ -- Rogério Brito <rbrito@ime.usp.br>  Sun, 22 Nov 2020 20:35:11 -0300
 
 youtube-dl (2020.11.12-1) unstable; urgency=medium
 

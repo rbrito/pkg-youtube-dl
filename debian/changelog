@@ -1,13 +1,14 @@
-youtube-dl (2020.11.29-1~1.gbp8d35e3) UNRELEASED; urgency=medium
+youtube-dl (2020.11.29-1~2.gbpd2963e) UNRELEASED; urgency=medium
 
-  ** SNAPSHOT build @8d35e3ca895880e058428ba6514f246f51648e9c **
+  ** SNAPSHOT build @d2963e0e32542b3b11bb38173966f47899c277ad **
 
   * New upstream version 2020.11.29.
     + Many improvements to the core library, additional/better support to
       YouTube (including metatada and license for music videos), and
       assorted misc sites.
+  * debian/rules: Declare compliance with policy 4.5.1.
 
- -- Rogério Brito <rbrito@ime.usp.br>  Tue, 01 Dec 2020 03:48:01 -0300
+ -- Rogério Brito <rbrito@ime.usp.br>  Tue, 01 Dec 2020 03:53:01 -0300
 
 youtube-dl (2020.11.21.1-1) unstable; urgency=medium
 

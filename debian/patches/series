@@ -1,4 +1,5 @@
-skip_support_file_installation.patch
-disable-autoupdate-mechanism.patch
-disable_more_online_tests.patch
-skip-style-checks-for-flake8.patch
+0001-Don-t-install-support-files-via-setup.py.patch
+0002-Disable-upstream-s-autoupdate-mechanism.patch
+0003-Disable-remaining-tests-that-require-internet.patch
+0004-Skip-directories-and-style-checks-for-flake8.patch
+0005-Makefile-Don-t-run-flake8-when-running-offlinetest.patch

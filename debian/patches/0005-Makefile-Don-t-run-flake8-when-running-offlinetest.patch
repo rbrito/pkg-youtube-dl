@@ -1,0 +1,28 @@
+From: =?utf-8?q?Rog=C3=A9rio_Brito?= <rbrito@ime.usp.br>
+Date: Sun, 22 Nov 2020 20:06:55 -0300
+Subject: Makefile: Don't run flake8 when running offlinetest.
+
+Unfortunately, due to the dynamic nature of python, we most certainly would
+like to run flake8 when testing the package. Alas, flake8 sometimes
+generates style-only warning or "errors" that break the build, in a similar
+fashion to what -Werror does to GCC or other compilers.
+
+Therefore, I'm disabling this.
+
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index aacc281..97d1d32 100644
+--- a/Makefile
++++ b/Makefile
+@@ -43,7 +43,7 @@ test:
+ ot: offlinetest
+ 
+ # Keep this list in sync with devscripts/run_tests.sh
+-offlinetest: codetest
++offlinetest:
+ 	$(PYTHON) -m nose --verbose test \
+ 		--exclude test_age_restriction.py \
+ 		--exclude test_download.py \

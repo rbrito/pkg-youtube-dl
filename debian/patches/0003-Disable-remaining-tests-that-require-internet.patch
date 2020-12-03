@@ -1,13 +1,16 @@
-Description: Disable remaining tests that require internet.
-Author: Unit 193 <unit193@ubuntu.com>
+From: Unit 193 <unit193@ubuntu.com>
+Date: Sun, 22 Nov 2020 20:05:27 -0300
+Subject: Disable remaining tests that require internet.
 
 ---
- Makefile |    5 ++++-
+ Makefile | 5 ++++-
  1 file changed, 4 insertions(+), 1 deletion(-)
 
+diff --git a/Makefile b/Makefile
+index 3e17365..7fcfcef 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -49,7 +49,10 @@
+@@ -49,7 +49,10 @@ offlinetest: codetest
  		--exclude test_subtitles.py \
  		--exclude test_write_annotations.py \
  		--exclude test_youtube_lists.py \

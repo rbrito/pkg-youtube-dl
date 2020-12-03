@@ -22,7 +22,7 @@ to, assuming that one already has the packages `devscripts`,
     # Push the results to the repositories:
     git push --all; git push --tags
     git push git@salsa.debian.org:debian/youtube-dl.git --all; git push git@salsa.debian.org:debian/youtube-dl.git --tags
-    dput ftp-master youtube-dl*changes
+    dput ftp-master youtube-dl*_source.changes
 
 These are the important steps and may need to be changed according to
 deviations, say, in the release process of upstream releases (e.g., if
@@ -58,4 +58,4 @@ Of course, if it is not possible to coordinate in the way described above,
 alas... :-(
 
 
- -- Rogério Brito <rbrito@ime.usp.br>, Tue,  1 Oct 2019 15:45:10 -0300
+ -- Rogério Brito <rbrito@ime.usp.br>, Tue,  1 Dec 2020 03:56:19 -0300

@@ -1,7 +1,9 @@
 From: Nicolas Braud-Santoni <nicolas@braud-santoni.eu>
 Date: Fri, 16 Mar 2018 14:17:40 -0300
 Subject: Disable upstream's autoupdate mechanism
-
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
 Description: Remove autoupdate mechanism
 Bug-Debian: 890119
@@ -9,15 +11,17 @@ Forwarded: not-needed
 Author: Nicolas Braud-Santoni <nicolas@braud-santoni.eu>
 Reviewed-by: Rogério Theodoro de Brito <rbrito@ime.usp.br>
 Last-Update: 2018-03-16
-
 ---
- youtube_dl/__init__.py | 7 ++++++-
+ README.md              | 3 ---
+ youtube_dl/__init__.py | 8 ++++++--
  youtube_dl/options.py  | 2 +-
- 2 files changed, 7 insertions(+), 2 deletions(-)
+ 3 files changed, 7 insertions(+), 6 deletions(-)
 
+diff --git a/README.md b/README.md
+index cd88568..54b40af 100644
 --- a/README.md
-+++ a/README.md
-@@ -53,9 +53,6 @@
++++ b/README.md
+@@ -53,9 +53,6 @@ Alternatively, refer to the [developer instructions](#developer-instructions) fo
  # OPTIONS
      -h, --help                       Print this help text and exit
      --version                        Print program version and exit
@@ -27,9 +31,11 @@ Last-Update: 2018-03-16
      -i, --ignore-errors              Continue on download errors, for example to
                                       skip unavailable videos in a playlist
      --abort-on-error                 Abort downloading of further videos (in the
+diff --git a/youtube_dl/__init__.py b/youtube_dl/__init__.py
+index 9a659fc..7f706d3 100644
 --- a/youtube_dl/__init__.py
 +++ b/youtube_dl/__init__.py
-@@ -36,7 +36,6 @@
+@@ -36,7 +36,6 @@ from .utils import (
      write_string,
      render_table,
  )
@@ -37,7 +43,7 @@ Last-Update: 2018-03-16
  from .downloader import (
      FileDownloader,
  )
-@@ -441,7 +440,12 @@
+@@ -441,7 +440,12 @@ def _real_main(argv=None):
      with YoutubeDL(ydl_opts) as ydl:
          # Update version
          if opts.update_self:
@@ -51,9 +57,11 @@ Last-Update: 2018-03-16
  
          # Remove cache dir
          if opts.rm_cachedir:
+diff --git a/youtube_dl/options.py b/youtube_dl/options.py
+index 6d5ac62..bfaad24 100644
 --- a/youtube_dl/options.py
 +++ b/youtube_dl/options.py
-@@ -140,7 +140,7 @@
+@@ -140,7 +140,7 @@ def parseOpts(overrideArguments=None):
      general.add_option(
          '-U', '--update',
          action='store_true', dest='update_self',

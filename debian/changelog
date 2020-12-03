@@ -1,3 +1,29 @@
+youtube-dl (2020.11.29-1) unstable; urgency=medium
+
+  * New upstream version 2020.11.29.
+    + Many improvements to the core library, additional/better support to
+      YouTube (including metatada and license for music videos), and
+      assorted misc sites.
+  * debian/rules: Declare compliance with policy 4.5.1.
+  * debian/README.source: Update to ease copy-n-past'ability.
+
+ -- Rogério Brito <rbrito@ime.usp.br>  Tue, 01 Dec 2020 03:57:13 -0300
+
+youtube-dl (2020.11.21.1-1) unstable; urgency=medium
+
+  * New upstream version 2020.11.21.1.
+    + Fixes many infrastructural problems in the core of the module, fixes
+      extraction of names from youtube playlists and fixes support for other
+      sites. Also, Closes: #972284 (probably the previous version already
+      had fixes for this).
+  * debian/control: Remove libav-tools alternative of ffmpeg.
+    (Closes: #768793)
+  * debian/patches:
+     + Regenerate from patch-queue.
+     + Add patch to disable code-style checks when running tests.
+
+ -- Rogério Brito <rbrito@ime.usp.br>  Sun, 22 Nov 2020 20:35:11 -0300
+
 youtube-dl (2020.11.12-1~bpo10+1) buster-backports; urgency=medium
 
   * Rebuild for buster-backports.

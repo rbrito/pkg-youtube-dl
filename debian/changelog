@@ -1,6 +1,7 @@
-youtube-dl (2020.11.29-2) UNRELEASED; urgency=medium
+youtube-dl (2021.01.08-1) UNRELEASED; urgency=medium
 
   * Team upload.
+  * New upstream version
   * Remove redundant uupdate from d/watch to make it compatible with
     routine-update
 

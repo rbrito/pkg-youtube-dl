@@ -414,7 +414,7 @@ Authentication Options:
                                      out, youtube-dl will ask interactively.
     -2, --twofactor TWOFACTOR        Two-factor authentication code
     -n, --netrc                      Use .netrc authentication data
-    --video-password PASSWORD        Video password (vimeo, smotri, youku)
+    --video-password PASSWORD        Video password (vimeo, youku)
 
 
 Adobe Pass Options:
@@ -837,6 +837,7 @@ Also filtering work for comparisons = (equals), ^= (starts with), $=
     lower-case (http, https, rtsp, rtmp, rtmpe, mms, f4m, ism,
     http_dash_segments, m3u8, or m3u8_native)
 -   format_id: A short description of the format
+-   language: Language code
 
 Any string comparison may be prefixed with negation ! in order to
 produce an opposite comparison, e.g. !*= (does not contain).
@@ -1173,8 +1174,8 @@ Use the --cookies option, for example
 --cookies /path/to/cookies/file.txt.
 
 In order to extract cookies from browser use any conforming browser
-extension for exporting cookies. For example, cookies.txt (for Chrome)
-or cookies.txt (for Firefox).
+extension for exporting cookies. For example, Get cookies.txt (for
+Chrome) or cookies.txt (for Firefox).
 
 Note that the cookies file must be in Mozilla/Netscape format and the
 first line of the cookies file must be either # HTTP Cookie File or

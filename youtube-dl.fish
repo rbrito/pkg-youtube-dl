@@ -139,7 +139,7 @@ complete --command youtube-dl --long-option username --short-option u --descript
 complete --command youtube-dl --long-option password --short-option p --description 'Account password. If this option is left out, youtube-dl will ask interactively.'
 complete --command youtube-dl --long-option twofactor --short-option 2 --description 'Two-factor authentication code'
 complete --command youtube-dl --long-option netrc --short-option n --description 'Use .netrc authentication data'
-complete --command youtube-dl --long-option video-password --description 'Video password (vimeo, smotri, youku)'
+complete --command youtube-dl --long-option video-password --description 'Video password (vimeo, youku)'
 complete --command youtube-dl --long-option ap-mso --description 'Adobe Pass multiple-system operator (TV provider) identifier, use --ap-list-mso for a list of available MSOs'
 complete --command youtube-dl --long-option ap-username --description 'Multiple-system operator account login'
 complete --command youtube-dl --long-option ap-password --description 'Multiple-system operator account password. If this option is left out, youtube-dl will ask interactively.'

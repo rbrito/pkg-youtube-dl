@@ -1,4 +1,4 @@
-youtube-dl (2021.01.08-1) UNRELEASED; urgency=medium
+youtube-dl (2021.01.08-1) unstable; urgency=medium
 
   * Team upload.
   * New upstream version
@@ -6,7 +6,7 @@ youtube-dl (2021.01.08-1) UNRELEASED; urgency=medium
     routine-update
   * Add salsa-ci file (routine-update)
 
- -- Andreas Tille <tille@debian.org>  Thu, 14 Jan 2021 11:52:49 +0100
+ -- Andreas Tille <tille@debian.org>  Fri, 15 Jan 2021 08:57:28 +0100
 
 youtube-dl (2020.11.29-1) unstable; urgency=medium
 

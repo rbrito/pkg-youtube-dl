@@ -4,6 +4,7 @@ youtube-dl (2021.01.08-1) UNRELEASED; urgency=medium
   * New upstream version
   * Remove redundant uupdate from d/watch to make it compatible with
     routine-update
+  * Add salsa-ci file (routine-update)
 
  -- Andreas Tille <tille@debian.org>  Thu, 14 Jan 2021 11:52:49 +0100
 

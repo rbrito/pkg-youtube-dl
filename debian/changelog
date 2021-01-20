@@ -1,3 +1,9 @@
+youtube-dl (2021.01.08-1~bpo10+1) buster-backports; urgency=medium
+
+  * Rebuild for buster-backports.
+
+ -- Roger Shimizu <rosh@debian.org>  Thu, 21 Jan 2021 01:31:48 +0900
+
 youtube-dl (2021.01.08-1) unstable; urgency=medium
 
   * Team upload.

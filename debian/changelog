@@ -1,3 +1,13 @@
+youtube-dl (2021.01.08-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream version
+  * Remove redundant uupdate from d/watch to make it compatible with
+    routine-update
+  * Add salsa-ci file (routine-update)
+
+ -- Andreas Tille <tille@debian.org>  Fri, 15 Jan 2021 08:57:28 +0100
+
 youtube-dl (2020.11.29-1~bpo10+1) buster-backports; urgency=medium
 
   * Rebuild for buster-backports.
